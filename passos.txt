@@ -1,0 +1,10 @@
+configurar o Git Local:
+git config --global  user.name AmandaTasca 
+git config --global  user.email amandatasca012@gmail.com
+
+
+Criar um projeto:
+dotnet nem mvc -o Pokedex
+
+Executar um projeto:
+dotnet watch run
