@@ -32,6 +32,11 @@ public class HomeController : Controller
         return View(pokemons);
     }
 
+    public IActionResult Details(int id)
+    {
+      return View();
+    }
+
     public IActionResult Privacy()
     {
         return View();
