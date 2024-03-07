@@ -1,6 +1,15 @@
 ﻿@model List<Pokemon>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home ";
+    var tipos = (List<Tipo>)ViewData["Tipos"];
+        string Cor(String nome)
+        {
+            return tipos
+                .Where(t => t.Nome == nome)
+                .Select(t => t.Cor)
+                .FirstOrDefault();
+        }
+
 }
 
 <section class="pt-5 pb-3 text-center container">
@@ -8,44 +17,14 @@
         <div class="col mx-auto">
             <h1>Pokédex</h1>
             <div class="group">
-                <button id="btn-all" class="btn btn-md my-2 text-white bg-secondary btn-filter">Ver
-                    Todos</button>
+                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">
+                    Ver Todos
+                    </button>
+                    @foreach (var tipo in tipos)
+                    {
                 <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#aab">Aço</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#39f">Água</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#76e">Dragão</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#fc3">Elétrico</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#e9e">Fada</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#66b">Fantasma</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#f42">Fogo</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#6cf">Gelo</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#ab6">Inseto</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#b54">Lutador</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#aa9">Normal</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#ba6">Pedra</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#7c5">Planta</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#f59">Psíquico</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#754">Sombrio</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#db5">Terrestre</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#a59">Venenoso</button>
-                <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:#89f">Voador</button>
+                    style="background-color:@tipo.Cor">@tipo.Nome</button>
+                    }
             </div>
         </div>
     </div>
@@ -61,22 +40,26 @@
 
             <!-- Card Pokemon - Inicio -->
             <div class="col">
-                <div class="card shadow-sm cursor-pointer planta venenoso" onclick="GetInfo(001)">
-                    <img src="img/pokemons/001.png" class="card-img-top" width="100%" height="300" alt="Bulbasaur" />
+                <div class="card shadow-sm cursor-pointer @string.Join(' ', Pokemon.Tipo)">
+                    <img src="@Pokemon.Imagem" class="card-img-top" width="100%" height="300" alt="@Pokemon.Nome" />
                     <div class="card-body">
-                        <p class="card-text mb-0">Nº 001</p>
-                        <h3 class="card-title">Bulbasaur</h3>
+                        <p class="card-text mb-0">Nº @Pokemon.Numero.ToString("000")</p>
+                        <h3 class="card-title">@Pokemon.Nome</h3>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="#" class="btn my-2 text-white" style="background-color:#7c5">Planta</a>
-                                <a href="#" class="btn my-2 text-white" style="background-color:#a59">Venenoso</a>
+                                @foreach ( var tipo in Pokemon.Tipo)
+                                {
+                                    <a href="#" class="btn my-2 text-white" 
+                                          style="background-color:@Cor(tipo)"> @tipo</a>
+                                }
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Card Pokemon - Fim -->
-            
+
             }
 
             <div id="zeroPokemon" class="col-lg-12 text-center" hidden>
