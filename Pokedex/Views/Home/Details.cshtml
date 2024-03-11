@@ -31,12 +31,17 @@
 				<div class="col-lg-7 fs-5 mt-4">
 					<p class="mb-3"><strong>Descrição:</strong> @Model.Descricao </p>
 					<p class="mb-3"><strong>Espécie:</strong>@Model.Especie</p>
-					<p class="mb-3"><strong>Altura:</strong> @Model.altura mts</p>
+					<p class="mb-3"><strong>Altura:</strong> @Model.Altura mts</p>
 					<p class="mb-3"><strong>Peso:</strong> @Model.Peso kgs</p>
 					<p class="fw-bold">Tipo</p>
 					<div class="btn-group">
-						<a href="#" class="btn btn-lg text-white" style="background-color:#7c5">Planta</a>
-                        <a href="#" class="btn btn-lg text-white" style="background-color:#a59">Venenoso</a>
+						@foreach (var tipo in Model.Tipo)
+						{
+							<a href="#" class="btn btn-lg text-white" style="background-color: @Cor(tipo)">
+								@tipo
+							</a>
+
+						}
 					</div>
 				</div>
 			</div>
