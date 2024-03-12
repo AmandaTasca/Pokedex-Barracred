@@ -17,13 +17,14 @@
         <div class="col mx-auto">
             <h1>Pokédex</h1>
             <div class="group">
-                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">
-                    Ver Todos
+                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter" 
+                   onclick="filter('all')">
+                       Ver todos
                     </button>
                     @foreach (var tipo in tipos)
                     {
                 <button id="btn-@tipo.Nome" class="btn btn-sm my-2 text-white btn-filter"
-                    style="background-color:@tipo.Cor" onclick="filter(@tipo.Nome)">
+                    style="background-color:@tipo.Cor" onclick="filter('@tipo.Nome')">
                     @tipo.Nome
                     </button>
                     }
